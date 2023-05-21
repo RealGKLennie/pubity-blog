@@ -76,17 +76,21 @@ export const getStaticProps: GetStaticProps<
     }
   }
 
+  // Ensure tags is an array, if it's undefined, set it to an empty array
+  const sanitizedTags = Array.isArray(tags) ? tags : [];
+
   return {
     props: {
       post,
       morePosts,
       settings,
-      tags,
       preview,
+      tags: sanitizedTags,  // Pass the sanitized tags here
       token: previewData.token ?? null,
     },
   }
 }
+
 
 
 
