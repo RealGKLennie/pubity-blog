@@ -2,7 +2,7 @@ import { PreviewSuspense } from '@sanity/preview-kit'
 import PostPage from 'components/PostPage'
 import {
   getAllPostsSlugs,
-  getPostAndMoreStories,
+  getPostAndMoreStoriesAndTags,
   getSettings,
 } from 'lib/sanity.client'
 import { Post, Settings } from 'lib/sanity.queries'
