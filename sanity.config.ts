@@ -13,6 +13,8 @@ import { unsplashImageAsset } from 'sanity-plugin-asset-source-unsplash'
 import authorType from 'schemas/author'
 import postType from 'schemas/post'
 import settingsType from 'schemas/settings'
+import categoryType from 'schemas/category'
+
 
 const title =
   process.env.NEXT_PUBLIC_SANITY_PROJECT_TITLE || 'Next.js Blog with Sanity.io'
@@ -24,7 +26,21 @@ export default defineConfig({
   title,
   schema: {
     // If you want more content types, you can add them to this array
-    types: [authorType, postType, settingsType],
+    types: [authorType, postType, settingsType, categoryType],
+    
+    templates: (prev) => {
+    const categoryChild = {
+      id: 'category-child',
+      title: 'Category: Child',
+      schemaType: 'category',
+      parameters: [{name: `parentId`, title: `Parent ID`, type: `string`}],
+      // This value will be passed-in from desk structure
+      value: ({parentId}: {parentId: string}) => ({
+        parent: {_type: 'reference', _ref: parentId},
+      }),
+    }
+    
+    return [...prev, categoryChild]
   },
   plugins: [
     deskTool({
