@@ -70,6 +70,12 @@ export default defineType({
       type: 'reference',
       to: [{ type: authorType.name }],
     }),
+    defineField(){
+      title: 'Tags',
+      name: 'tags',
+      type: 'array',
+      of: [{type: 'reference', to: {type: 'tag'}}],
+    }),
   ],
   preview: {
     select: {
@@ -87,4 +93,16 @@ export default defineType({
       return { title, media, subtitle: subtitles.join(' ') }
     },
   },
-})
+}),
+{
+  title: 'Tag',
+  name: 'tag',
+  type: 'document',
+  fields: [
+    {
+      title: 'Name',
+      name: 'name',
+      type: 'string',
+    }
+  ]
+}

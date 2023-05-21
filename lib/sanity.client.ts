@@ -46,10 +46,10 @@ export async function getPostBySlug(slug: string): Promise<Post> {
   return {} as any
 }
 
-export async function getPostAndMoreStories(
+export async function getPostAndMoreStoriesAndTags(
   slug: string,
   token?: string | null
-): Promise<{ post: Post; morePosts: Post[] }> {
+): Promise<{ post: Post; morePosts: Post[]; tags: Tag[] }> { // Updated the return type
   if (projectId) {
     const client = createClient({
       projectId,
@@ -60,5 +60,5 @@ export async function getPostAndMoreStories(
     })
     return await client.fetch(postAndMoreStoriesQuery, { slug })
   }
-  return { post: null, morePosts: [] }
+  return { post: null, morePosts: [], tags: [] } // Updated the default return value
 }

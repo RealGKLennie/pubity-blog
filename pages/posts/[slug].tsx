@@ -65,9 +65,9 @@ export const getStaticProps: GetStaticProps<
 
   const token = previewData.token
 
-  const [settings, { post, morePosts }] = await Promise.all([
+  const [settings, { post, morePosts, tags }] = await Promise.all([
     getSettings(),
-    getPostAndMoreStories(params.slug, token),
+    getPostAndMoreStoriesAndTags(params.slug, token),
   ])
 
   if (!post) {
@@ -81,11 +81,14 @@ export const getStaticProps: GetStaticProps<
       post,
       morePosts,
       settings,
+      tags,
       preview,
       token: previewData.token ?? null,
     },
   }
 }
+
+
 
 export const getStaticPaths = async () => {
   const slugs = await getAllPostsSlugs()
