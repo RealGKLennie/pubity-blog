@@ -93,16 +93,4 @@ export default defineType({
       return { title, media, subtitle: subtitles.join(' ') }
     },
   },
-}),
-{
-  title: 'Tag',
-  name: 'tag',
-  type: 'document',
-  fields: [
-    {
-      title: 'Name',
-      name: 'name',
-      type: 'string',
-    }
-  ]
-}
+})
