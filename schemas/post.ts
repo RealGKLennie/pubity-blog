@@ -70,7 +70,7 @@ export default defineType({
       type: 'reference',
       to: [{ type: authorType.name }],
     }),
-    defineField(){
+    defineField({
       title: 'Tags',
       name: 'tags',
       type: 'array',
