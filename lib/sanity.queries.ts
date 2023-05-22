@@ -46,6 +46,10 @@ export interface Author {
   picture?: any
 }
 
+export interface Tag {
+  name?: string
+}
+
 export interface Post {
   _id: string
   title?: string
@@ -55,6 +59,7 @@ export interface Post {
   author?: Author
   slug?: string
   content?: any
+  tag?: Tag
 }
 
 export interface Settings {

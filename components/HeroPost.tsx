@@ -5,10 +5,13 @@ import type { Post } from 'lib/sanity.queries'
 import Link from 'next/link'
 
 export default function HeroPost(
-  props: Pick<
-    Post,
-    'title' | 'coverImage' | 'date' | 'excerpt' | 'author' | 'slug'
-  >
+  interface HeroPostProps extends Pick<
+      Post,
+      'title' | 'coverImage' | 'date' | 'excerpt' | 'author' | 'slug'
+  > {
+      tags: Array<{ name: string }>;
+  }
+
 ) {
   const { title, coverImage, date, excerpt, author, slug } = props
   return (
@@ -32,7 +35,11 @@ export default function HeroPost(
           {author && (
             <AuthorAvatar name={author.name} picture={author.picture} />
           )}
-        </div>
+          <ul>
+            {tags && tags.map((tag, index) => (
+              <li key={index}>{tag.name}</li>
+            ))}
+          </ul>        </div>
       </div>
     </section>
   )
