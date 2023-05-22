@@ -23,6 +23,8 @@ export default function HeroPost({
   slug,
   tags,
 }: HeroPostProps) {
+  console.log(tags); // add this line
+
   return (
     <section>
       <div className="mb-8 md:mb-16">
