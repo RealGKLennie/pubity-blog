@@ -11,7 +11,7 @@ interface HeroPostProps {
   excerpt: Post['excerpt']
   author: Post['author']
   slug: Post['slug']
-  tags: Post['tags']
+  tags: string[] // Changed this to an array of strings
 }
 
 export default function HeroPost({
@@ -44,13 +44,12 @@ export default function HeroPost({
           {author && (
             <AuthorAvatar name={author.name} picture={author.picture} />
           )}
-          <p> pussy lips</p>
           {tags && (
             <div>
               <h3>Tags</h3>
               <ul>
                 {tags.map((tag, index) => (
-                  <li key={index}>{tag.name}</li>
+                  <li key={index}>{tag}</li> // Here we're treating each tag as a string
                 ))}
               </ul>
             </div>
