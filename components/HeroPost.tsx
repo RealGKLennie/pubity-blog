@@ -4,16 +4,25 @@ import Date from 'components/PostDate'
 import type { Post } from 'lib/sanity.queries'
 import Link from 'next/link'
 
-export default function HeroPost(
-  interface HeroPostProps extends Pick<
-      Post,
-      'title' | 'coverImage' | 'date' | 'excerpt' | 'author' | 'slug'
-  > {
-      tags: Array<{ name: string }>;
-  }
+interface HeroPostProps {
+  title: Post['title']
+  coverImage: Post['coverImage']
+  date: Post['date']
+  excerpt: Post['excerpt']
+  author: Post['author']
+  slug: Post['slug']
+  tags: Post['tags']
+}
 
-) {
-  const { title, coverImage, date, excerpt, author, slug } = props
+export default function HeroPost({
+  title,
+  coverImage,
+  date,
+  excerpt,
+  author,
+  slug,
+  tags,
+}: HeroPostProps) {
   return (
     <section>
       <div className="mb-8 md:mb-16">
@@ -22,8 +31,8 @@ export default function HeroPost(
       <div className="mb-20 md:mb-28 md:grid md:grid-cols-2 md:gap-x-16 lg:gap-x-8">
         <div>
           <h3 className="mb-4 text-4xl leading-tight lg:text-6xl">
-            <Link href={`/posts/${slug}`} className="hover:underline">
-              {title || 'Untitled'}
+            <Link href={`/posts/${slug}`}>
+              <a className="hover:underline">{title || 'Untitled'}</a>
             </Link>
           </h3>
           <div className="mb-4 text-lg md:mb-0">
@@ -35,11 +44,17 @@ export default function HeroPost(
           {author && (
             <AuthorAvatar name={author.name} picture={author.picture} />
           )}
-          <ul>
-            {tags && tags.map((tag, index) => (
-              <li key={index}>{tag.name}</li>
-            ))}
-          </ul>        </div>
+          {tags && (
+            <div>
+              <h3>Tags</h3>
+              <ul>
+                {tags.map((tag, index) => (
+                  <li key={index}>{tag.name}</li>
+                ))}
+              </ul>
+            </div>
+          )}
+        </div>
       </div>
     </section>
   )
