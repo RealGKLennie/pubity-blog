@@ -46,16 +46,11 @@ export default function HeroPost({
           {author && (
             <AuthorAvatar name={author.name} picture={author.picture} />
           )}
-          {tags && (
-            <div>
-              <h3>Tags</h3>
-              <ul>
-                {tags.map((tag, index) => (
-                  <li key={index}>{tag}</li> // Here we're treating each tag as a string
-                ))}
-              </ul>
-            </div>
-          )}
+           <div>
+            {tags.map((tag, index) => (
+              <span key={index}>{tag}</span>
+            ))}
+          </div>
         </div>
       </div>
     </section>
