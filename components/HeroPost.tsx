@@ -44,6 +44,7 @@ export default function HeroPost({
           {author && (
             <AuthorAvatar name={author.name} picture={author.picture} />
           )}
+          <p> pussy lips</p>
           {tags && (
             <div>
               <h3>Tags</h3>
